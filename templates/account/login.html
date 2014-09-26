@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Login{% endblock %}
+
+{% block middlepanel %}
+        <!-- container main -->
+        <div class="container">
+            <!-- content panel login -->
+            <section class="col-xs-14 col-sm-14 col-md-14 col-lg-14">
+                {{ form.non_field_errors }}
+                {{ form.username.errors }}
+                {{ form.password.errors }}
+                <form class="col-xs-16 col-sm-16 col-md-16 col-lg-16" role="form" action="{% url 'account_login'  %}" method="post" >
+                    {% csrf_token %}
+
+
+
+                    <div class="row">
+                        <input class="icon-user col-xs-16 col-sm-16 col-md-7 col-lg-6" type="text" name="{{ form.username.name }}" placeholder="{{ form.username.label }}" required />
+                        <input class="icon-password col-xs-16 col-sm-16 col-md-8 col-lg-6" type="password" name="{{ form.password.name }}" placeholder="{{form.password.label}}" required />
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-3 pull-right" style="padding:15px 4%;">
+                            <button type="submit" class="btn btn-default btn-lg btn-sutmit-login pull-right">LOGIN</button>
+                        </div>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-3 pull-left">
+                            <div class="form-group">
+                                <div class="checkbox" style="padding:5px;">
+                                    <input type="checkbox" name="{{ form.remember.name }}" id="checkboxG6" class="css-checkbox" />
+                                    <label for="checkboxG6" class="css-label">Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <!-- end content panel login -->
+
+            <!-- footer -->
+            <footer class="col-xs-14 col-sm-14 col-md-14 col-lg-14 footer-main">
+                <div class="col-lg-16 footer-div">&nbsp;</div>
+                <div class="col-xs-16 col-sm-8 col-md-8 col-lg-8" style="padding-left:0;">
+                    <div class="col-xs-16 col-sm-16 col-md-16 col-lg-7 pull-left">
+                        <a href="#">Lost username?</a>
+                    </div>
+                    <div class="col-xs-16 col-sm-16 col-md-16 col-lg-6">
+                        <a href="{% url 'account_password_reset' %}">Lost password?</a>
+                    </div>
+                </div>
+                <div class="col-xs-16 col-sm-8 col-md-8 col-lg-8 text-right">
+                    <a href="{% url 'account_signup'  %}" class="text-left">Not a member? Sign up now</a>
+                </div>
+            </footer>
+            <!-- end footer -->
+        </div>
+{% endblock %}
+
+
